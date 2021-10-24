@@ -20,7 +20,7 @@ GO
 CREATE TABLE Prestamos(ID INT IDENTITY (1,1) PRIMARY KEY,
 					   IDLibro INT,
 					   IDPlanilla INT,
-					   EstudianteID INT,
+					   UsuarioID INT,
 					   FechaInicio DATE,
 					   FechaFin DATE,
 					   FOREIGN KEY (IDLibro) REFERENCES Libros(ID),
@@ -36,6 +36,7 @@ CREATE TABLE Financiero(ID INT IDENTITY (1,1) PRIMARY KEY,
 					   monto FLOAT,
 					   fechaLimite DATE,
 					   pagado BIT,
+					   EstudianteID INT,
 					   FOREIGN KEY (tipoDeTransaccion) REFERENCES TipoDeTransaccion(ID))
 GO
 
@@ -50,7 +51,7 @@ VALUES ('Morshu', 'Beatbox', 81928129, 'Morshu123@gmail.com'),
   	   ('Jeimy', 'Morales', 72182912, 'JMorales@outlook.com');
 GO
 
-INSERT INTO Prestamos(IDLibro, IDPlanilla, EstudianteID, FechaInicio, FechaFin)
+INSERT INTO Prestamos(IDLibro, IDPlanilla, UsuarioID, FechaInicio, FechaFin)
 VALUES (1, 1, 1234, '11-10-2021', '20-10-2021'),
   	   (2, 2, 1234, '10-10-2021', '26-10-2021'),
 	   (3, 1, 5678, '12-10-2021', '15-10-2021');
@@ -61,6 +62,6 @@ VALUES ('Devolución'),
   	   ('Préstamo');
 GO
 
-INSERT INTO Financiero(tipoDeTransaccion, monto, fechaLimite, pagado)
-VALUES (1, 9850.00, '26-10-2021', 1),
-  	   (2, 10650.00, '15-10-2021', 0);
+INSERT INTO Financiero(tipoDeTransaccion, monto, fechaLimite, pagado, EstudianteID)
+VALUES (1, 9850.00, '26-10-2021', 1, 1234),
+  	   (2, 10650.00, '15-10-2021', 0, 5678);
